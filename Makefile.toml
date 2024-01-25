@@ -45,7 +45,6 @@ dependencies = ["gitcommit"]
 [tasks.deploy]
 command = "cargo"
 args = ["shuttle", "deploy"]
-dependencies = ["prepare", "gitpush"]
 
 [tasks.restart]
 command = "cargo"
