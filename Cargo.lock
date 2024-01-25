@@ -265,11 +265,13 @@ name = "api-lib"
 version = "0.1.0"
 dependencies = [
  "actix-web",
+ "async-trait",
  "serde",
  "serde_json",
  "shared",
  "sqlx",
  "tracing",
+ "uuid",
 ]
 
 [[package]]
