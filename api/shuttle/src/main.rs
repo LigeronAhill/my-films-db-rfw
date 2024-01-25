@@ -1,5 +1,9 @@
-use actix_files::Files;
-use actix_web::web::{self, ServiceConfig};
+use actix_files::NamedFile;
+use actix_web::{
+    get,
+    web::{self, ServiceConfig},
+    Responder,
+};
 use api_lib::film_repository::PostgresFilmRepository;
 use shuttle_actix_web::ShuttleActixWeb;
 use shuttle_runtime::CustomError;
@@ -24,8 +28,12 @@ async fn main(
                     api_lib::films::service::<api_lib::film_repository::PostgresFilmRepository>,
                 ),
         )
-        .service(Files::new("/", "static").index_file("index.html"));
+        .service(index);
     };
 
     Ok(config.into())
+}
+#[get("/")]
+async fn index() -> impl Responder {
+    NamedFile::open_async("static/index.html").await
 }
