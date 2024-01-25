@@ -1,11 +1,24 @@
-use actix_web::{get, web::ServiceConfig};
+use actix_web::{
+    get,
+    web::{self, ServiceConfig},
+};
 use shuttle_actix_web::ShuttleActixWeb;
 use shuttle_runtime::CustomError;
-use sqlx::Executor;
+use sqlx::{Executor, PgPool};
 
 #[get("/")]
 async fn hello_world() -> &'static str {
     "Hello World!"
+}
+#[get("/version")]
+async fn version(db: web::Data<PgPool>) -> String {
+    let result = sqlx::query_scalar("SELECT version()")
+        .fetch_one(db.get_ref())
+        .await;
+    match result {
+        Ok(version) => version,
+        Err(e) => format!("Error: {e:?}"),
+    }
 }
 
 #[shuttle_runtime::main]
@@ -15,8 +28,10 @@ async fn main(
     pool.execute(include_str!("../../db/schema.sql"))
         .await
         .map_err(CustomError::new)?;
+    let pool = actix_web::web::Data::new(pool);
+
     let config = move |cfg: &mut ServiceConfig| {
-        cfg.service(hello_world);
+        cfg.app_data(pool).service(hello_world).service(version);
     };
 
     Ok(config.into())
