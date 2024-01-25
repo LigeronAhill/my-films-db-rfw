@@ -33,7 +33,7 @@ async fn main(
 
     Ok(config.into())
 }
-#[get("/")]
+#[get("")]
 async fn index() -> impl Responder {
     NamedFile::open_async("static/index.html").await
 }
