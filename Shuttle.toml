@@ -1,1 +1,2 @@
 name = "rust-fsws-films-db"
+assets = ["static/*"]
