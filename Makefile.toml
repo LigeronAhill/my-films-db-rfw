@@ -1,0 +1,56 @@
+[env]
+CARGO_MAKE_EXTEND_WORKSPACE_MAKEFILE = true
+
+[tasks.format]
+install_crate = "rustfmt"
+command = "cargo"
+args = ["fmt", "--", "--emit=files"]
+
+[tasks.clippy]
+command = "cargo"
+args = ["clippy"]
+dependencies = ["format"]
+
+[tasks.clean]
+command = "cargo"
+args = ["clean"]
+
+[tasks.build]
+command = "cargo"
+args = ["build"]
+dependencies = ["clean"]
+
+[tasks.test]
+command = "cargo"
+args = ["test", "--lib", "--", "--test-threads=1"]
+dependencies = ["build"]
+
+[tasks.prepare]
+dependencies = ["test", "clippy"]
+
+[tasks.gitadd]
+command = "git"
+args = ["add", "."]
+
+[tasks.gitcommit]
+command = "git"
+args = ["commit", "-m", "${@}"]
+dependencies = ["gitadd"]
+
+[tasks.gitpush]
+command = "git"
+args = ["push"]
+dependencies = ["gitcommit"]
+
+[tasks.deploy]
+command = "cargo"
+args = ["shuttle", "deploy"]
+dependencies = ["prepare", "gitpush"]
+
+[tasks.restart]
+command = "cargo"
+args = ["shuttle", "project", "restart"]
+
+[tasks.run]
+command = "cargo"
+args = ["shuttle", "run"]
