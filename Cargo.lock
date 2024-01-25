@@ -265,6 +265,7 @@ name = "api-lib"
 version = "0.1.0"
 dependencies = [
  "actix-web",
+ "shared",
  "sqlx",
  "tracing",
 ]
@@ -517,8 +518,10 @@ checksum = "9f13690e35a5e4ace198e7beea2895d29f3a9cc55015fcebe6336bd2010af9eb"
 dependencies = [
  "android-tzdata",
  "iana-time-zone",
+ "js-sys",
  "num-traits",
  "serde",
+ "wasm-bindgen",
  "windows-targets 0.52.0",
 ]
 
@@ -2373,6 +2376,10 @@ dependencies = [
 [[package]]
 name = "shared"
 version = "0.1.0"
+dependencies = [
+ "chrono",
+ "uuid",
+]
 
 [[package]]
 name = "shuttle-actix-web"
@@ -3402,6 +3409,7 @@ checksum = "f00cc9702ca12d3c81455259621e676d0f7251cec66a21e98fe2e9a37db93b2a"
 dependencies = [
  "getrandom",
  "serde",
+ "wasm-bindgen",
 ]
 
 [[package]]
