@@ -53,3 +53,36 @@ args = ["shuttle", "project", "restart"]
 [tasks.run]
 command = "cargo"
 args = ["shuttle", "run"]
+
+[tasks.front-serve]
+workspace = false
+cwd = "./front"
+install_crate = "dioxus-cli"
+command = "dx"
+args = ["serve", "--port", "8000"]
+
+[tasks.twstart]
+workspace = false
+script_runner = "@shell"
+script = '''
+cd front
+npx tailwindcss -i ./input.css -o ./public/tailwind.css --watch
+'''
+
+
+[tasks.front-build]
+workspace = false
+script_runner = "@shell"
+script = '''
+# shuttle issue with static files
+# location is different depending on the environment
+rm -rf api/shuttle/static static
+mkdir api/shuttle/static
+mkdir static
+cd front
+dx build --release
+# local development 
+cp -r dist/* ../api/shuttle/static
+# production
+cp -r dist/* ../static
+'''

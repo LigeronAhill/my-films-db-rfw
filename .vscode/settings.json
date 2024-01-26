@@ -11,5 +11,17 @@
             "name": "rfsws",
             "group": "shuttle"
         }
-    ]
+    ],
+"emmet.includeLanguages": {
+    "rust": "html",
+    "*.rs": "html"
+},
+"tailwindCSS.includeLanguages": {
+    "rust": "html",
+    "*.rs": "html"
+},
+"files.associations": {
+    "*.rs": "rust"
+}
+
 }
