@@ -14,7 +14,7 @@ pub fn Header(cx: Scope) -> Element {
                 a {
                     class: "flex title-font font-medium items-center text-white mb-4 md:mb-0",
                     img {
-                        class: "bg-transparent p-2 animate-jump",
+                        class: "bg-transparent p-2 animate-jump size-20",
                         alt: "logo",
                         src: "image3.png",
                         "loading": "lazy"
