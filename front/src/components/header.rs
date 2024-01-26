@@ -15,11 +15,11 @@ pub fn Header(cx: Scope) -> Element {
                     class: "flex title-font font-medium items-center text-white mb-4 md:mb-0",
                     img {
                         class: "bg-transparent p-2 animate-jump",
-                        alt: "ferris",
+                        alt: "logo",
                         src: "image3.png",
                         "loading": "lazy"
                     }
-                    span { class: "ml-3 text-2xl", "Ligeron films"}
+                    span { class: "ml-3 text-2xl", "Marvel films"}
                 }
                Button {
                    button_type: ButtonType::Primary,

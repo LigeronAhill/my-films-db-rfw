@@ -6,11 +6,11 @@ pub fn Footer(cx: Scope) -> Element {
             class: "bg-red-950 w-full h-20 p-2 box-border gap-6 flex flex-row justify-center items-center text-amber-100",
             a {
                 class: "w-auto h-full",
-                href: "https://www.devbcn.com/",
+                href: "https://rust-fsws-films-db.shuttleapp.rs/",
                 target: "_blank",
                 img {
                     class: "h-full w-auto",
-                    alt: "DevBcn",
+                    alt: "cap",
                     src: "image1.png",
                     "loading": "lazy"
                 }
@@ -29,11 +29,11 @@ pub fn Footer(cx: Scope) -> Element {
             }
             a {
                 class: "w-auto h-full",
-                href: "https://www.meetup.com/es-ES/bcnrust/",
+                href: "https://rust-fsws-films-db.shuttleapp.rs/",
                 target: "_blank",
                 img {
                     class: "h-full w-auto",
-                    alt: "BcnRust",
+                    alt: "Tony",
                     src: "image2.png",
                     "loading": "lazy"
                 }
